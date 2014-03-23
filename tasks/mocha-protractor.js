@@ -36,7 +36,7 @@ module.exports = function(grunt) {
     grunt.util.async.forEachSeries(options.browsers, function(browser, next) {
       grunt.util.async.forEachSeries(files, function(fileGroup, next) {
         asyncTasks.push(function() {
-          console.log();
+          console.log('I am in here:', options);
           runner(grunt, fileGroup, browser, options, next);
         });
       }, next);
