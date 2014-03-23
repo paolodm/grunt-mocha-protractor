@@ -11,7 +11,8 @@ var protractor = require('protractor'),
     Mocha = require('mocha'),
     path = require('path'),
     Module = require('module'),
-    expect = require('expect.js');
+    expect = require('expect.js'),
+    async = require('async');
 
 module.exports = function(grunt) {
   grunt.registerMultiTask('mochaProtractor', 'Run e2e angular tests with webdriver.', function() {
@@ -30,15 +31,20 @@ module.exports = function(grunt) {
           baseUrl: '',
           rootElement: '',
           params: {}
-        });
+        }),
+        asyncTasks = [];
 
     // wrap reporter
     options.reporter = reporter(options.reporter);
 
     grunt.util.async.forEachSeries(options.browsers, function(browser, next) {
       grunt.util.async.forEachSeries(files, function(fileGroup, next) {
-        runner(grunt, fileGroup, browser, options, next);
+        asyncTasks.push(function() {
+          runner(grunt, fileGroup, browser, options, next);
+        });
       }, next);
     }, this.async());
+
+    async.parallel(asyncTasks);
   });
 };
