@@ -8,10 +8,6 @@
 var protractor = require('protractor'),
     runner = require('../lib/runner'),
     reporter = require('../lib/reporter'),
-    Mocha = require('mocha'),
-    path = require('path'),
-    Module = require('module'),
-    expect = require('expect.js'),
     async = require('async');
 
 module.exports = function(grunt) {
@@ -40,6 +36,7 @@ module.exports = function(grunt) {
     grunt.util.async.forEachSeries(options.browsers, function(browser, next) {
       grunt.util.async.forEachSeries(files, function(fileGroup, next) {
         asyncTasks.push(function() {
+          console.log();
           runner(grunt, fileGroup, browser, options, next);
         });
       }, next);
