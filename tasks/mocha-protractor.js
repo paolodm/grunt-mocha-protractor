@@ -20,7 +20,7 @@ module.exports = function(grunt) {
           browsers: ['Chrome'],
           reporter: 'Spec',
           args: null,
-          seleniumUrl: 'http://localhost:4444/wd/hub',
+          seleniumUrl: 'http://paolo-delmundo:85e061ef-4748-415e-ae2c-0a54c3bbf281@ondemand.saucelabs.com:80/wd/hub',
 
           // saucelabs options
           sauceUsername: process.env.SAUCE_USERNAME,
