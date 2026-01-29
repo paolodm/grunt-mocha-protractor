@@ -23,7 +23,7 @@
     "angularjs"
   ],
   "dependencies": {
-    "mocha": "~1.17.1",
+    "mocha": "~10.6.0",
     "protractor": "~0.18.1",
     "expect.js": "~0.2.0"
   },
